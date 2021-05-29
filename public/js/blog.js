@@ -19,6 +19,11 @@ const loginFormHandler = async (event) => {
   }
 };
 
+const moveToHomePage = () => {
+  document.location.replace('/new-post');
+};  
+
 document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector('#btn_new_post')
+  .addEventListener('click', moveToHomePage);
+  

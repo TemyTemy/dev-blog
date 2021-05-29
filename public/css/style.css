@@ -194,3 +194,33 @@ main {
   color: var(--fore-color);
   font-weight: 700;
 }
+
+span.posted-by {
+  font-size: 12px;
+}
+
+.new-post {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--fore-color);
+  height: 100%;
+  margin-top: 20px;
+}
+
+.post-form{
+  padding: 20px;
+  width: 100%;
+}
+
+.new-post {
+  width: 65%;
+}
