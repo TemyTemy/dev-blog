@@ -73,6 +73,11 @@ a {
   background-color: transparent;
 }
 
+:root {
+  --bg-color: dodgerblue;
+  --fore-color: #fff;
+}
+
 .container {
   width: 85%;
   max-width: 1200px;
@@ -89,7 +94,7 @@ header {
   flex-direction: column;
   width: 100%;
   height: 130px;
-  background-color: dodgerblue;
+  background-color: var(--bg-color);
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -101,7 +106,7 @@ nav {
   flex-direction: row;
   padding-left: 10px;
   padding-right: 10px;
-  color: #fff;
+  color:  var(--fore-color);
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-right: 20px;
@@ -116,13 +121,13 @@ header p {
   margin-left: 9px;
   height: 35px;
   width: 161px;
-  background-color: #fff;
+  background-color: var(--fore-color);
   font-size: 17px;
   border-radius: 5px;
   text-align: center;
   padding-top: 6px;
   font-weight: 900;
-  color: dodgerblue;
+  color: var(--bg-color);
 }
 
 .shadow {
@@ -153,7 +158,7 @@ main {
 .blog {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: var(--fore-color);
   height: 149px;
   margin-top: 20px;
 }
@@ -174,7 +179,7 @@ main {
 .item {
   display: flex;
   flex-direction: column;
-  background-color: dodgerblue;
+  background-color:  var(--bg-color);
   padding: 0px 8px 6px 8px;
   margin: 0px auto 8px auto;
   width: 88%;
@@ -182,10 +187,10 @@ main {
 
 .blog-text {
   min-height: 101px;
-  background-color: #fff
+  background-color:var(--fore-color);
 }
 
 .topic span {
-  color: #fff;
+  color: var(--fore-color);
   font-weight: 700;
 }
