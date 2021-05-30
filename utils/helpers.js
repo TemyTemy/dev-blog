@@ -11,4 +11,8 @@ module.exports = {
 
     return `<span for="img" aria-label="book">${book}</span>`;
   },
+  dateFormat: date => {
+    const dt = new Date(date);
+    return `${dt.getMonth() + 1}-${dt.getDate()}-${dt.getFullYear()}`;
+  }
 };

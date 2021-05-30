@@ -1,35 +1,15 @@
 <div class="blog">
-  <div class="item list-item">
+  {{#each list }}
+  <div class="item">
     <div class="topic-row">
       <div class="topic">
-        <span>Why MVC is so important</span>
-        <span class="posted-by">Posted by Temmy on 5/8/2021</span>
+        <span class="list-item" data-key={{id}}><span class="topic-item">{{topic}}</span><span class="comment-count">Comments</span></span>
+        <span class="posted-by">Posted by {{username}} on {{dateFormat timestamp}}</span>
       </div>
     </div>
     <div class="blog-text">
-      MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
+     {{content}}
     </div>
-  </div> 
-  <div class="item list-item">
-    <div class="topic-row">
-      <div class="topic">
-        <span>Why MVC is so important</span>
-        <span class="posted-by">Posted by Temmy on 5/8/2021</span>
-      </div>
-    </div>
-    <div class="blog-text">
-      MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
-    </div>
-  </div> 
-  <div class="item list-item">
-    <div class="topic-row">
-      <div class="topic">
-        <span>Why MVC is so important</span>
-        <span class="posted-by">Posted by Temmy on 5/8/2021</span>
-      </div>
-    </div>
-    <div class="blog-text">
-      MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
-    </div>
-  </div>      
+  </div>
+  {{/each}}
 </div>

@@ -228,6 +228,10 @@ span.posted-by {
   justify-content: center;
 }
 
+.comment-section {
+  background-color: #fff;
+}
+
 button.submit-post {
   width: 100%;
   height: 40px;
@@ -236,6 +240,14 @@ button.submit-post {
   border-color: var(--bg-color);
   background-color: var(--bg-color);
   color: var(--fore-color);
+}
+
+button.submit-comment {
+  margin-bottom: 4px;
+  margin-top: 4px;
+  width: fit-content;
+  padding-left: 55px;
+  padding-right: 55px;
 }
 
 button.new-post {
@@ -257,4 +269,22 @@ button.new-post {
 
 .display-post {
   width: 99%;
+}
+
+.list-item {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.comment-count {
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.your-comment {
+  color: #fff;
+}
+
+.comment-text {
+  width: 80%;
 }

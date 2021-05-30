@@ -31,13 +31,16 @@ const moveToEditItemPage = () => {
   document.location.replace('/post/1/edit');
 };
 
+const moveToDisplayComments = () => {
+  document.location.replace('/post/1/comments');
+};
 
 const newPost = document.querySelector('#btn_new_post');
 if (newPost) {
   newPost.addEventListener('click', moveToHomePage);
 }
 
-const itemDisplay = document.querySelectorAll('.list-item');
+const itemDisplay = document.querySelectorAll('.topic-item');
 if (itemDisplay) {
   itemDisplay.forEach(item => item.addEventListener('click', moveToDisplayItemPage));
 }
@@ -45,5 +48,39 @@ if (itemDisplay) {
 const editPost = document.querySelector('#edit-post');
 if (editPost) {
   editPost.addEventListener('click', moveToEditItemPage);
+}
+
+const commentCountDisplay = document.querySelectorAll('.comment-count');
+if (commentCountDisplay) {
+  commentCountDisplay.forEach(item => item.addEventListener('click', moveToDisplayComments));
+}
+const createNewPost = async () => {
+  const topic = document.querySelector("#topic").value.trim();
+  const content = document.querySelector("#content").value.trim();
+  if (!topic || !content) {
+    alert('Please enter a topic and a content to create a blog post');
+    return;
+  };
+  const payLoad = {
+    "topic": topic,
+    "content": content,
+    "userId": 1
+  };
+  const response = await fetch('/api/post', {
+    method: 'POST',
+    body: JSON.stringify(payLoad),
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    document.location.replace('../');
+  } else {
+    alert('Failed to create a new post');
+  }
+};
+
+const submitNewPostButton = document.querySelector("#submit-new-post");
+if (submitNewPostButton) {
+  submitNewPostButton.addEventListener('click', createNewPost);
 }
   
