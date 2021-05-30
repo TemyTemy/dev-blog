@@ -146,3 +146,33 @@ const deleteExistingPostButton = document.querySelector("#delete-post");
 if (deleteExistingPostButton) {
   deleteExistingPostButton.addEventListener('click', deletePost);
 }
+
+const addComment = async (src) => {
+  const content = document.querySelector("#content").value.trim();
+  const target = src.target;
+  const id = target.getAttribute('data-key');
+  if (!content) {
+    alert('Please enter a content to comment');
+    return;
+  };
+  const payLoad = {
+    "content": content
+  };
+  const response = await fetch(`/api/post/${id}/comment`, {
+    method: 'PATCH',
+    body: JSON.stringify(payLoad),
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    document.location.replace('../../');
+  } else {
+    alert('Failed to update existing post');
+  }
+};
+
+const postCommentButton = document.querySelector("#submit-comment");
+if (postCommentButton) {
+  postCommentButton.addEventListener('click', addComment);
+}
+

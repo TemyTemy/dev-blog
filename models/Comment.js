@@ -20,8 +20,8 @@ Comment.init(
       type: Sequelize.TEXT,
       allowNull: false
     },
-     posted_by_user_id: {
-      type: DataTypes.INTEGER,
+     posted_by_user_name: {
+      type: DataTypes.STRING,
       allowNull: false
     },
      date_time_of_post: {

@@ -2,43 +2,25 @@
   <div class="item">
     <div class="topic-row">
       <div class="topic">
-        <span>Why MVC is so important</span>
-        <span class="posted-by">Posted by Temmy on 5/8/2021</span>
+        <span>{{comment.topic}}</span>
+        <span class="posted-by">Posted by  {{comment.username}} on {{dateFormat comment.timestamp}}</span>
       </div>
     </div>
     <div class="blog-text">
-      MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
+      {{comment.blog_content}}
     </div>
+    {{#each comment.list }}
     <div class="comment">
       <div class="topic-row">
         <div class="topic">
-          <span class="posted-by">Comment by Temmy on 5/8/2021</span>
+          <span class="posted-by">Comment by {{username}} on {{dateFormat timestamp}}</span>
         </div>
       </div>
       <div class="blog-text comment-text">
-        MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
+       {{content}}
       </div>
     </div>
-    <div class="comment">
-        <div class="topic-row">
-          <div class="topic">
-            <span class="posted-by">Comment by Temmy on 5/8/2021</span>
-          </div>
-        </div>
-        <div class="blog-text comment-text">
-          MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
-        </div>
-    </div>
-    <div class="comment">
-      <div class="topic-row">
-        <div class="topic">
-          <span class="posted-by">Comment by Temmy on 5/8/2021</span>
-        </div>
-      </div>
-      <div class="blog-text comment-text">
-        MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
-      </div>
-    </div>
+      {{/each}}   
      <form>
         <div class="post-form">            
             <div class="form-group">
@@ -46,7 +28,7 @@
                 <textarea class="form-control" id="content" rows="3"></textarea>
             </div>
             <div class="button-section comment-section">
-                <button id='submit-post' class="submit-post submit-comment">Post</button>
+                <button id='submit-comment' class="submit-post submit-comment" data-key="{{comment.id}}">Post Comment</button>
             </div>
         </div>          
      </form>

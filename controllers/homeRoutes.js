@@ -87,6 +87,7 @@ router.get('/post/:id/comments', async (req, res) => {
       const result = {
         "list": list,
         "topic": post.topic,
+        "id": post.id,
         "blog_content": post.post_text,
         "timestamp": post.date_time_of_post,
         "username": post.user.user_name

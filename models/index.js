@@ -6,13 +6,13 @@ const User = require('./User');
 User.hasMany(Post, {as: "posts", foreignKey: "posted_by_user_id"});
 Post.belongsTo(User, {
   foreignKey: "posted_by_user_id",
-  as: "user",
+  as: "user"
 });
 
 Post.hasMany(Comment, {as: "comments", foreignKey: "topic_id"});
 Comment.belongsTo(Post, {
   foreignKey: "topic_id",
-  as: "post",
+  as: "post"
 });
 
 module.exports = {
