@@ -1,24 +1,3 @@
-const loginFormHandler = async (event) => {
-  event.preventDefault();
-
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
-
-  if (email && password) {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to log in');
-    }
-  }
-};
-
 const moveToHomePage = () => {
   document.location.replace('/new-post');
 };  
@@ -182,10 +161,14 @@ const loginFormHandler = async (event) => {
   const user_name = document.querySelector('#user_name').value.trim();
   const password = document.querySelector('#password').value.trim();
 
-  if (email && password) {
-    const response = await fetch('/api/login', {
+  if (user_name && password) {
+    const payLoad = {
+      "user_name": user_name,
+      "password": password
+    };
+    const response = await fetch('/api/user/login', {
       method: 'POST',
-      body: JSON.stringify({ user_name, password }),
+      body: JSON.stringify(payLoad),
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -194,8 +177,46 @@ const loginFormHandler = async (event) => {
     } else {
       alert('Failed to log in');
     }
+  } else {
+    alert('Please provide a user name and password to login');
   }
 };
 
-document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
+const loginForm = document.querySelector('#login-form');
+if (loginForm) {
+  loginForm.addEventListener('submit', loginFormHandler);
+}
+
+
+const signupFormHandler = async (event) => {
+  event.preventDefault();
+
+  const user_name = document.querySelector('#user_name').value.trim();
+  const password = document.querySelector('#password').value.trim();
+
+  if (user_name && password) {
+    const payLoad = {
+      "user_name": user_name,
+      "password": password
+    };
+    const response = await fetch('/api/user/signup', {
+      method: 'POST',
+      body: JSON.stringify(payLoad),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to sign you up');
+    }
+  } else {
+    alert('Please provide a user name and password to login');
+  }
+};
+
+const signupForm = document.querySelector('#signup-form');
+if (signupForm) {
+  signupForm.addEventListener('submit', signupFormHandler);
+}
 
