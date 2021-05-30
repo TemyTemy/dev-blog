@@ -288,3 +288,7 @@ button.new-post {
 .comment-text {
   width: 80%;
 }
+
+.notes {
+  justify-content: left;
+}

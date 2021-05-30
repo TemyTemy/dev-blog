@@ -176,3 +176,26 @@ if (postCommentButton) {
   postCommentButton.addEventListener('click', addComment);
 }
 
+const loginFormHandler = async (event) => {
+  event.preventDefault();
+
+  const user_name = document.querySelector('#user_name').value.trim();
+  const password = document.querySelector('#password').value.trim();
+
+  if (email && password) {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ user_name, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to log in');
+    }
+  }
+};
+
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
+
