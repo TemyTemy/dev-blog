@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
         "username": post.user.user_name
       }));      
       console.log(result);
-      res.render('homepage', {list: result});
+      res.render('homepage', {list: result, logged_in: req.session.logged_in});
     });     
   } catch (err) {
     res.status(500).json(err);
@@ -85,6 +85,7 @@ router.get('/post/:id/comments', async (req, res) => {
       }
       
       const result = {
+        "logged_in": req.session.logged_in,
         "list": list,
         "topic": post.topic,
         "id": post.id,
@@ -114,4 +115,14 @@ router.get('/post/:id/edit', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/login', async (req, res) => {
+  try {    
+      res.render('login');     
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+login_button
 module.exports = router;

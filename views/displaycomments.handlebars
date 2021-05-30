@@ -20,17 +20,19 @@
        {{content}}
       </div>
     </div>
-      {{/each}}   
-     <form>
-        <div class="post-form">            
-            <div class="form-group">
-                <label for="content" class="your-comment">Your comment</label>
-                <textarea class="form-control" id="content" rows="3"></textarea>
-            </div>
-            <div class="button-section comment-section">
-                <button id='submit-comment' class="submit-post submit-comment" data-key="{{comment.id}}">Post Comment</button>
-            </div>
-        </div>          
-     </form>
+      {{/each}}
+      {{#if comment.logged_in}}  
+      <form>
+          <div class="post-form">            
+              <div class="form-group">
+                  <label for="content" class="your-comment">Your comment</label>
+                  <textarea class="form-control" id="content" rows="3"></textarea>
+              </div>
+              <div class="button-section comment-section">
+                  <button id='submit-comment' class="submit-post submit-comment" data-key="{{comment.id}}">Post Comment</button>
+              </div>
+          </div>          
+      </form>
+    {{/if}}  
   </div>     
 </div>
