@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
@@ -17,7 +17,7 @@ Comment.init(
       allowNull: false
     },
      comment_text: {
-      type: DataTypes.STRING,
+      type: Sequelize.TEXT,
       allowNull: false
     },
      posted_by_user_id: {

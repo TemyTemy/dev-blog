@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, Comment, User } = require('../models');
 
 
 router.get('/', async (req, res) => {
@@ -65,7 +65,19 @@ router.get('/post/:id', async (req, res) => {
 
 router.get('/post/:id/comments', async (req, res) => {
   try {
-    res.render('displaycomments');
+    Comment.findAll({where: {topic_id: req.params.id}, include: [{
+      model: Post,
+      as: "post",
+      attributes: ["topic"]}
+    ]}).then((comment) => { 
+      const result = {
+        "id": comment.id,
+        "content": comment.comment_text,
+        "timestamp": comment.date_time_of_post,
+        "username": 'Yoou'
+      };
+      res.render('displaycomments', {comment: result});
+     });      
   } catch (err) {
     res.status(500).json(err);
   }
