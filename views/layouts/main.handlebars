@@ -17,10 +17,10 @@
         <nav>
              <a href="/">Home</a>
              <a href="/dashboard">Dashboard</a>
-              {{#if logged_in}}
+              {{#if session.logged_in}}
                 <a id="logout">Logout</a>
               {{/if}} 
-              {{#unless logged_in}}
+              {{#unless session.logged_in}}
                 <a href="/login">Login</a>
               {{/unless}}  
         </nav>

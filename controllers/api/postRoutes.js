@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
 router.post('/', async (req, res) => {
-  console.log(req.body);  
   try {
     const payLoad = {
         topic: req.body.topic,
@@ -15,8 +14,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => {
-  console.log(req.body);  
+router.patch('/:id', async (req, res) => { 
   try {
     const message = {
        message: 'ok'

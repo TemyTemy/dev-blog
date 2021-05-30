@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
       as: "user",
       attributes: ["user_name"]}
     ]}).then((posts) => {
-      console.log(posts);
       posts.forEach((post) => result.push({
         "id": post.id,
         "topic": post.topic,
@@ -18,7 +17,6 @@ router.get('/', async (req, res) => {
         "timestamp": post. date_time_of_post,
         "username": post.user.user_name
       }));      
-      console.log(result);
       res.render('homepage', {list: result, logged_in: req.session.logged_in});
     });     
   } catch (err) {
@@ -36,7 +34,7 @@ router.get('/dashboard', async (req, res) => {
 
 router.get('/new-post', async (req, res) => {
   try {
-    res.render('newpost');
+    res.render('newpost', {logged_in: req.session.logged_in});
   } catch (err) {
     res.status(500).json(err);
   }
