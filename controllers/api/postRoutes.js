@@ -6,7 +6,7 @@ router.post('/', async (req, res) => {
     const payLoad = {
         topic: req.body.topic,
         post_text: req.body.content,
-        posted_by_user_id: req.body.userId,
+        posted_by_user_id:  req.session.user_id,
         date_time_of_post: new Date()
     };
     Post.create(payLoad).then((post) =>res.json(post.id));    
@@ -42,7 +42,7 @@ router.patch('/:id/comment', async (req, res) => {
       const payLoad = {
         topic_id: req.params.id,
         comment_text: req.body.content,
-        posted_by_user_name: 'Addes',
+        posted_by_user_name:  req.session.user_name,
         date_time_of_post: new Date()
       };
     Comment.create(payLoad).then(() =>res.json(message));    

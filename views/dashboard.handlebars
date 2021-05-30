@@ -1,5 +1,7 @@
-<div class="dashboard">      
-      <button class="new-post" id='btn_new_post'>
-        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;New Post
-      </button>
+<div class="dashboard"> 
+      {{#if logged_in}}     
+            <button class="new-post" id='btn_new_post'>
+            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;New Post
+            </button>
+       {{/if}}      
 </div>
