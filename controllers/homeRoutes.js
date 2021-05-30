@@ -44,7 +44,20 @@ router.get('/new-post', async (req, res) => {
 
 router.get('/post/:id', async (req, res) => {
   try {
-    res.render('displaypost');
+    Post.findOne({where: {id: req.params.id}, include: [{
+      model: User,
+      as: "user",
+      attributes: ["user_name"]}
+    ]}).then((post) => { 
+      const result = {
+        "id": post.id,
+        "topic": post.topic,
+        "content": post.post_text,
+        "timestamp": post. date_time_of_post,
+        "username": post.user.user_name
+      };
+      res.render('displaypost', {post: result});
+     });      
   } catch (err) {
     res.status(500).json(err);
   }
@@ -60,10 +73,16 @@ router.get('/post/:id/comments', async (req, res) => {
 
 router.get('/post/:id/edit', async (req, res) => {
   try {
-    res.render('editpost');
+    Post.findOne({where: {id: req.params.id}}).then((post) => { 
+      const result = {
+        "id": post.id,
+        "topic": post.topic,
+        "content": post.post_text
+      };
+      res.render('editpost', {post: result});
+     });      
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 module.exports = router;

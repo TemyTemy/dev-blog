@@ -23,12 +23,15 @@ const moveToHomePage = () => {
   document.location.replace('/new-post');
 };  
 
-const moveToDisplayItemPage = () => {
-  document.location.replace('/post/1');
+const moveToDisplayItemPage = (src) => {  
+  const id = src.target.id;
+  document.location.replace(`/post/${id}`);
 };
 
-const moveToEditItemPage = () => {
-  document.location.replace('/post/1/edit');
+const moveToEditItemPage = (src) => {
+  const target = src.target;
+  const id = target.getAttribute('data-key');
+  document.location.replace(`/post/${id}/edit`);
 };
 
 const moveToDisplayComments = () => {
@@ -42,7 +45,9 @@ if (newPost) {
 
 const itemDisplay = document.querySelectorAll('.topic-item');
 if (itemDisplay) {
-  itemDisplay.forEach(item => item.addEventListener('click', moveToDisplayItemPage));
+  itemDisplay.forEach(item => {    
+    item.addEventListener('click', moveToDisplayItemPage);
+  });
 }
 
 const editPost = document.querySelector('#edit-post');
@@ -84,3 +89,60 @@ if (submitNewPostButton) {
   submitNewPostButton.addEventListener('click', createNewPost);
 }
   
+
+const updatePost = async (src) => {
+  const topic = document.querySelector("#topic").value.trim();
+  const content = document.querySelector("#content").value.trim();
+  const target = src.target;
+  const id = target.getAttribute('data-key');
+  if (!topic || !content) {
+    alert('Please enter a topic and a content to update blog post');
+    return;
+  };
+  const payLoad = {
+    "topic": topic,
+    "content": content
+  };
+  const response = await fetch(`/api/post/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payLoad),
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    document.location.replace('../../');
+  } else {
+    alert('Failed to update existing post');
+  }
+};
+
+const submitExistingPostButton = document.querySelector("#submit-post");
+if (submitExistingPostButton) {
+  submitExistingPostButton.addEventListener('click', updatePost);
+}
+
+const deletePost = async (src) => {
+  const target = src.target;
+  const id = target.getAttribute('data-key');
+  if (!id) {
+    alert('Please specify an id for the post to delete');
+    return;
+  };
+
+  const url = `/api/post/${id}`;
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (response.ok) {
+    document.location.replace('../../');
+  } else {
+    alert('Failed to delete existing post');
+  }
+};
+
+const deleteExistingPostButton = document.querySelector("#delete-post");
+if (deleteExistingPostButton) {
+  deleteExistingPostButton.addEventListener('click', deletePost);
+}

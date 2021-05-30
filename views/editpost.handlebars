@@ -10,14 +10,14 @@
         <div class="post-form">
             <div class="form-group">
                 <label for="topic">Topic</label>
-                <input type="email" class="form-control" id="topic">
+                <input type="text" class="form-control" id="topic" value="{{post.topic}}">
             </div>
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea class="form-control" id="content" rows="3"></textarea>
+                <textarea class="form-control" id="content" rows="3">{{post.content}}</textarea>
             </div>
             <div class="button-section">
-                <button id='submit-post' class="submit-post">Update Post</button>
+                <button id='submit-post' class="submit-post" data-key="{{post.id}}">Update Post</button>
             </div>
         </div>          
      </form>     

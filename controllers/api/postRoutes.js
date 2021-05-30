@@ -15,4 +15,32 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.patch('/:id', async (req, res) => {
+  console.log(req.body);  
+  try {
+    const message = {
+       message: 'ok'
+    };
+    const payLoad = {
+      topic: req.body.topic,
+      post_text: req.body.content
+    };
+  Post.update(payLoad,
+    {where: {id: req.params.id}}).then((post) =>res.json(message));    
+ } catch (err) {
+     res.status(500).json(err);
+ }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const result = {
+    message: 'ok'
+    };
+    Post.destroy({where: {id: req.params.id}}).then(() => res.json(result));      
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
+
 module.exports = router;

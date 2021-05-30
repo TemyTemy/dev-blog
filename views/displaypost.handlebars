@@ -2,19 +2,19 @@
   <div class="item">
     <div class="topic-row">
       <div class="topic">
-        <span>Why MVC is so important</span>
-        <span class="posted-by">Posted by Temmy on 5/8/2021</span>
+        <span>{{post.topic}}</span>
+        <span class="posted-by">Posted by {{post.username}} on {{dateFormat post.timestamp}}</span>
       </div>
     </div>
     <div class="blog-text">
-      MVC allows developers to maintain a true separation of concerns, devisiong their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.
+      {{post.content}}
     </div>
     <div class="display-button-section">
       <div class="button-section display-post">
-          <button id='edit-post' class="submit-post">Edit Post</button>
+          <button id='edit-post' class="submit-post" data-key="{{post.id}}">Edit Post</button>
       </div>
       <div class="button-section display-post">
-          <button id='delete-post' class="submit-post">Delete Post</button>
+          <button id='delete-post' class="submit-post" data-key="{{post.id}}">Delete Post</button>
       </div>
     </div>  
   </div>     
