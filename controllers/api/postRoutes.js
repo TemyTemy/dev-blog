@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, Comment } = require('../../models');
 router.post('/', async (req, res) => {
   console.log(req.body);  
   try {
@@ -31,6 +31,25 @@ router.patch('/:id', async (req, res) => {
      res.status(500).json(err);
  }
 });
+
+
+router.patch('/:id/comment', async (req, res) => {
+    console.log(req.body);  
+    try {
+      const message = {
+         message: 'ok'
+      };
+      const payLoad = {
+        topic_id: req.params.id,
+        comment_text: req.body.content,
+        posted_by_user_name: 'Addes',
+        date_time_of_post: new Date()
+      };
+    Comment.create(payLoad).then(() =>res.json(message));    
+   } catch (err) {
+       res.status(500).json(err);
+   }
+  });
 
 router.delete('/:id', async (req, res) => {
   try {
