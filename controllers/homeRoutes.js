@@ -65,17 +65,33 @@ router.get('/post/:id', async (req, res) => {
 
 router.get('/post/:id/comments', async (req, res) => {
   try {
-    Comment.findAll({where: {topic_id: req.params.id}, include: [{
-      model: Post,
-      as: "post",
-      attributes: ["topic"]}
-    ]}).then((comment) => { 
+    Post.findOne({where: {id: req.params.id}, include: [{
+      model: Comment,
+      as: "comments",
+      attributes: ["comment_text", "date_time_of_post", "posted_by_user_name"]},
+      { model: User, as: "user", attributes: ["user_name"]}]}).then((post) => { 
+      const list = [];
+      if(post.comments) {
+        console.log(post.commments);
+        post.comments.forEach((comment) => {
+          const cm = {
+            "id": comment.id,
+            "content": comment.comment_text,
+            "timestamp": comment.date_time_of_post,
+            "username": comment.posted_by_user_name
+          };
+          list.push(cm);
+        });
+      }
+      
       const result = {
-        "id": comment.id,
-        "content": comment.comment_text,
-        "timestamp": comment.date_time_of_post,
-        "username": 'Yoou'
+        "list": list,
+        "topic": post.topic,
+        "blog_content": post.post_text,
+        "timestamp": post.date_time_of_post,
+        "username": post.user.user_name
       };
+      console.log(post);
       res.render('displaycomments', {comment: result});
      });      
   } catch (err) {
